@@ -161,7 +161,7 @@
         .card {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
-            padding: 50px 30px;
+            padding: 40px 30px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             border: 1px solid rgba(255,255,255,0.5);
@@ -185,10 +185,26 @@
             color: #555;
         }
 
+        /* Google Maps Embed Container */
+        .map-container {
+            width: 100%;
+            height: 250px;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(197, 168, 128, 0.4);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* Tombol Elegan */
         .btn {
             display: inline-block;
-            margin-top: 25px;
+            margin-top: 15px;
             padding: 14px 35px;
             background-color: var(--primary-gold);
             color: white;
@@ -296,7 +312,13 @@
             <p><strong>Pukul:</strong> 09:00 WIB - Selesai</p>
             <p><strong>Lokasi:</strong> Kalisuren Paradise Residence blok F No 14</p>
             
-            <a href="https://www.google.com/maps/search/?api=1&query=Kalisuren+Paradise+Residence+blok+F+No+14" target="_blank" class="btn">
+            <!-- Google Maps Embed Langsung di Web -->
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.1504958630787!2d106.7441!3d-6.4385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjYnMTguNiJTIDEwNsKwNDQnMzguOCJF!5e0!3m2!1sid!2sid!4v1600000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- Tombol Buka di Aplikasi Google Maps -->
+            <a href="https://maps.app.goo.gl/dFZ1rEprak4jiZtQA" target="_blank" class="btn">
                 📍 Buka di Google Maps
             </a>
         </div>
@@ -316,21 +338,16 @@
         const btn = document.getElementById("musicBtn");
         const icon = document.getElementById("musicIcon");
 
-        // Fungsi yang dipanggil saat tombol "Buka Undangan" diklik
         function bukaUndangan() {
             const cover = document.getElementById('cover-screen');
-            
-            // Animasi menghilang (naik ke atas & transparan)
             cover.style.opacity = '0';
             cover.style.transform = 'translateY(-100vh)';
             
-            // Hapus elemen cover & aktifkan scroll halaman
             setTimeout(() => {
                 cover.style.display = 'none';
                 document.body.style.overflowY = 'auto';
             }, 1000);
 
-            // Play Musik Otomatis
             music.play().then(() => {
                 isPlaying = true;
                 icon.innerHTML = "⏸️";
@@ -338,7 +355,6 @@
             }).catch(err => console.log("Audio autoplay dicegah browser", err));
         }
 
-        // Fungsi Play/Pause manual
         function toggleMusic() {
             if (isPlaying) {
                 music.pause();
@@ -352,7 +368,6 @@
             isPlaying = !isPlaying;
         }
 
-        // Animasi Scroll (Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
