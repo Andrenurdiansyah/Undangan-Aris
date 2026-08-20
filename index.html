@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Aris & Tika</title>
+    <!-- Font Elegan -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #c5a880;
+            --dark-gold: #a3875f;
+            --bg-light: #faf8f5;
+            --text-dark: #2c2c2c;
+            --card-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif-text {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Hero Section dengan Efek Cinematic */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero h3 {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin: 10px 0;
+            font-style: italic;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* Scroll Indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            animation: bounce 2s infinite;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: white;
+            text-decoration: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+
+        /* Container Umum */
+        .section {
+            padding: 100px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Glassmorphism Card */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 50px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* Tombol Elegan */
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 35px;
+            background-color: var(--primary-gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-gold);
+            box-shadow: 0 8px 20px rgba(197, 168, 128, 0.4);
+        }
+
+        /* Wedding Gift / Digital Amplop */
+        .gift-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .bank-details {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-gold);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .bank-details img.logo-bank {
+            height: 30px;
+            margin-bottom: 15px;
+        }
+
+        .rekening-number {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            color: var(--text-dark);
+        }
+
+        .qris-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-gold);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .qris-img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Floating Music Button */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-gold);
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .spin {
+            animation: spinMusic 3s linear infinite;
+        }
+
+        @keyframes spinMusic {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Animasi Muncul (Fade In Up) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Toast Notification untuk Copy Clipboard */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 12px 20px;
+            position: fixed;
+            z-index: 1001;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- File Audio: Pastikan file "to-the-bone.mp3" ada di direktori yang sama -->
+    <audio id="bgMusic" loop>
+       <source src="to-the-bone.mp3" type="audio/mpeg">
+
+
+    </audio>
+
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()">
+        <span id="musicIcon">🎵</span>
+    </button>
+
+    <!-- Toast Notification -->
+    <div id="toast">Nomor rekening berhasil disalin!</div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h3 class="fade-in">The Wedding Of</h3>
+        <h1 class="fade-in" style="transition-delay: 0.2s;">Aris & Tika</h1>
+        <p class="fade-in" style="transition-delay: 0.4s;">Merayakan awal dari cerita selamanya.</p>
+        <a href="#event" class="scroll-down fade-in" style="transition-delay: 0.6s;">SCROLL KEBELOK</a>
+    </section>
+
+    <!-- Event Details -->
+    <section class="section" id="event">
+        <h2 class="section-title fade-in">Save The Date</h2>
+        
+        <div class="card fade-in">
+            <h3>Akad & Resepsi</h3>
+            <p class="serif-text" style="font-size: 1.2rem; margin: 15px 0; color: var(--primary-gold);">
+                Minggu, 23 Agustus 2026
+            </p>
+            <p><strong>Pukul:</strong> 09:00 WIB - Selesai</p>
+            <p><strong>Lokasi:</strong> Kalisuren Paradise Residence Blok F 14</p>
+            
+            <a href="https://www.google.com/maps/search/?api=1&query=Kalisuren+Paradise+Residence+Blok+F+14" target="_blank" class="btn">
+                📍 Buka di Google Maps
+            </a>
+        </div>
+    </section>
+
+    <!-- Wedding Gift / Amplop Digital -->
+    <section class="section">
+        <h2 class="section-title fade-in">Wedding Gift</h2>
+        <p class="fade-in" style="margin-bottom: 30px; font-weight: 300;">
+            Doa restu Anda merupakan karunia yang sangat berarti bagi kami.<br>
+            Bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih, dapat melalui fitur di bawah ini:
+        </p>
+
+        <div class="gift-container">
+            <!-- Rekening BCA -->
+            <div class="bank-details fade-in">
+                <!-- Placeholder Teks Logo BCA, bisa diganti gambar -->
+                <h3 style="color: #0066AE; font-family: sans-serif; font-weight: 900; font-style: italic; font-size: 1.5rem;">BCA</h3>
+                <p>Atas Nama: <strong>Aris / Tika</strong></p>
+                <div class="rekening-number" id="rek-bca">1234567890</div>
+                <button class="btn" onclick="copyRekening('1234567890')" style="padding: 10px 25px; font-size: 0.8rem;">
+                    📋 Salin Rekening
+                </button>
+            </div>
+
+            <!-- QRIS -->
+
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="section" style="padding-top: 50px; padding-bottom: 100px;">
+        <h1 class="fade-in" style="font-size: 3.5rem; color: var(--primary-gold);">Terima Kasih</h1>
+        <p class="fade-in" style="margin-top: 20px; font-style: italic;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+        <p class="fade-in" style="margin-top: 30px; font-weight: 600;">Aris & Tika</p>
+    </section>
+
+    <script>
+        // Logika Audio
+        let isPlaying = false;
+        const music = document.getElementById("bgMusic");
+        const btn = document.getElementById("musicBtn");
+        const icon = document.getElementById("musicIcon");
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                icon.innerHTML = "🎵";
+                icon.classList.remove("spin");
+            } else {
+                music.play();
+                icon.innerHTML = "⏸️";
+                icon.classList.add("spin");
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Putar musik saat user klik layar pertama kali
+        document.body.addEventListener('click', function() {
+            if (!isPlaying && music.paused) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    icon.innerHTML = "⏸️";
+                    icon.classList.add("spin");
+                }).catch(err => console.log("Audio autoplay dicegah browser"));
+            }
+        }, { once: true });
+
+        // Fitur Copy to Clipboard
+        function copyRekening(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
+        // Animasi Scroll (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
