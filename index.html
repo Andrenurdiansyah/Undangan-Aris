@@ -433,6 +433,24 @@
             transition: all 0.3s ease;
         }
 
+        .fab-btn svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-icon svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
         .fab-btn:hover {
             transform: scale(1.1);
         }
@@ -520,6 +538,16 @@
             cursor: pointer;
             transition: background 0.3s;
             white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-copy svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
         }
 
         .btn-copy:hover {
@@ -574,9 +602,15 @@
 
     <div class="floating-controls">
         <button class="fab-btn" id="musicBtn" onclick="toggleMusic()" title="Putar/Jeda Musik">
-            <span id="musicIcon">🎵</span>
+            <span id="musicIcon">
+                <!-- Ikon note musik -->
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+            </span>
         </button>
-        <button class="fab-btn" id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke Atas">⬆️</button>
+        <button class="fab-btn" id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke Atas">
+            <!-- Ikon chevron up -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
     </div>
 
     <!-- Hero Section -->
@@ -671,8 +705,9 @@
             </div>
 
             <!-- Tombol Buka di Aplikasi Google Maps -->
-            <a href="https://maps.app.goo.gl/dFZ1rEprak4jiZtQA" target="_blank" rel="noopener" class="btn">
-                📍 Buka di Google Maps
+            <a href="https://maps.app.goo.gl/dFZ1rEprak4jiZtQA" target="_blank" rel="noopener" class="btn btn-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+                Buka di Google Maps
             </a>
         </div>
     </section>
@@ -683,8 +718,9 @@
         <div class="card fade-in">
             <h3>RSVP</h3>
             <p>Mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i melalui WhatsApp agar kami dapat mempersiapkan acara dengan lebih baik.</p>
-            <a id="rsvpBtn" href="#" target="_blank" rel="noopener" class="btn btn-wa">
-                💬 Konfirmasi via WhatsApp
+            <a id="rsvpBtn" href="#" target="_blank" rel="noopener" class="btn btn-wa btn-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4C7.28 4 3.4 7.87 3.4 12.63a8.6 8.6 0 0 0 1.15 4.33L3.32 21l4.15-1.09a8.75 8.75 0 0 0 4.57 1.25h.01c4.77 0 8.65-3.87 8.65-8.63a8.6 8.6 0 0 0-2.5-6.1zm-5.55 13.3h-.01a7.24 7.24 0 0 1-3.69-1.01l-.26-.16-2.75.72.74-2.68-.17-.28a7.17 7.17 0 0 1-1.1-3.82c0-3.96 3.23-7.19 7.2-7.19a7.15 7.15 0 0 1 5.09 2.11 7.13 7.13 0 0 1 2.1 5.09c0 3.96-3.23 7.22-7.15 7.22zm3.93-5.4c-.21-.11-1.27-.63-1.47-.7-.2-.07-.34-.11-.49.11-.14.21-.56.7-.69.85-.13.14-.25.16-.47.05a5.9 5.9 0 0 1-1.73-1.07 6.5 6.5 0 0 1-1.2-1.5c-.13-.21 0-.33.1-.44.1-.1.21-.25.32-.38.1-.12.14-.21.21-.35.07-.14.04-.26-.02-.37-.06-.11-.49-1.18-.67-1.62-.18-.42-.36-.37-.49-.37h-.42c-.14 0-.37.05-.56.26-.19.21-.74.72-.74 1.76 0 1.03.76 2.03.86 2.17.1.14 1.5 2.29 3.63 3.21.51.22.9.35 1.21.45.51.16.97.14 1.34.08.41-.06 1.27-.52 1.45-1.02.18-.5.18-.93.13-1.02-.05-.09-.19-.14-.4-.25z"/></svg>
+                Konfirmasi via WhatsApp
             </a>
         </div>
     </section>
@@ -702,7 +738,10 @@
                     <div class="bank-number" id="rekNumber">2180655347</div>
                     <div class="bank-holder">a.n. Aris</div>
                 </div>
-                <button class="btn-copy" id="btnCopyRek" onclick="salinRekening()">Salin</button>
+                <button class="btn-copy" id="btnCopyRek" onclick="salinRekening()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span id="btnCopyRekLabel">Salin</span>
+                </button>
             </div>
 
             <p class="gift-note">Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan memberikan tanda kasih kepada kami.</p>
@@ -743,38 +782,43 @@
 
             music.play().then(() => {
                 isPlaying = true;
-                musicIcon.innerHTML = "⏸️";
-                musicIcon.classList.add("spin");
+                setMusicIcon(true);
             }).catch(err => console.log("Audio autoplay dicegah browser", err));
+        }
+
+        const iconNote = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>';
+        const iconPause = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+
+        function setMusicIcon(playing) {
+            musicIcon.innerHTML = playing ? iconPause : iconNote;
+            musicIcon.classList.toggle("spin", playing);
         }
 
         function toggleMusic() {
             if (isPlaying) {
                 music.pause();
-                musicIcon.innerHTML = "🎵";
-                musicIcon.classList.remove("spin");
+                setMusicIcon(false);
+                isPlaying = false;
             } else {
                 // Bug fix: kalau file audio gagal dimuat/diputar, jangan biarkan status jadi ngaco
                 music.play().then(() => {
                     isPlaying = true;
-                    musicIcon.innerHTML = "⏸️";
-                    musicIcon.classList.add("spin");
+                    setMusicIcon(true);
                 }).catch(err => console.log("Gagal memutar audio", err));
-                return;
             }
-            isPlaying = !isPlaying;
         }
 
         /* ================= Salin Nomor Rekening ================= */
         function salinRekening() {
             const nomor = document.getElementById("rekNumber").innerText.replace(/\s/g, "");
             const btnRek = document.getElementById("btnCopyRek");
+            const btnRekLabel = document.getElementById("btnCopyRekLabel");
 
             function markCopied() {
-                btnRek.innerText = "Tersalin ✓";
+                btnRekLabel.textContent = "Tersalin ✓";
                 btnRek.classList.add("copied");
                 setTimeout(() => {
-                    btnRek.innerText = "Salin";
+                    btnRekLabel.textContent = "Salin";
                     btnRek.classList.remove("copied");
                 }, 2000);
             }
