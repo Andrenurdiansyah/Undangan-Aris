@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan - Aris & Tika</title>
+
+    <!-- Open Graph biar preview rapi pas dishare -->
+    <meta property="og:title" content="The Wedding of Aris & Tika">
+    <meta property="og:description" content="Minggu, 23 Agustus 2026 - Kalisuren Paradise Residence">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200">
+
     <!-- Font Elegan -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -50,6 +57,8 @@
             align-items: center;
             color: white;
             transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            text-align: center;
+            padding: 20px;
         }
 
         .cover-title {
@@ -60,9 +69,24 @@
 
         .cover-subtitle {
             font-size: 1.2rem;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             letter-spacing: 3px;
             text-transform: uppercase;
+        }
+
+        .cover-guest {
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cover-guest span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--primary-gold);
+            display: block;
+            margin-top: 5px;
         }
 
         .btn-buka {
@@ -185,6 +209,70 @@
             color: #555;
         }
 
+        /* Mempelai / Ortu */
+        .couple-grid {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .couple-box {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .couple-box h3 {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 8px;
+        }
+
+        .couple-box p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .couple-divider {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            align-self: center;
+            font-style: italic;
+        }
+
+        /* Countdown */
+        .countdown-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .countdown-box {
+            background: #fff;
+            border: 1px solid rgba(197, 168, 128, 0.4);
+            border-radius: 14px;
+            padding: 18px 22px;
+            min-width: 80px;
+        }
+
+        .countdown-box .num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            display: block;
+        }
+
+        .countdown-box .label {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #777;
+        }
+
         /* Google Maps Embed Container */
         .map-container {
             width: 100%;
@@ -223,11 +311,27 @@
             box-shadow: 0 8px 20px rgba(197, 168, 128, 0.4);
         }
 
-        /* Floating Music Button */
-        .music-control {
+        .btn-wa {
+            background-color: #25D366;
+        }
+
+        .btn-wa:hover {
+            background-color: #1ebe5b;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Floating Buttons Wrapper */
+        .floating-controls {
             position: fixed;
             bottom: 30px;
             right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .fab-btn {
             background: rgba(255, 255, 255, 0.9);
             color: var(--primary-gold);
             border: none;
@@ -237,15 +341,26 @@
             font-size: 22px;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.3s ease;
         }
 
-        .music-control:hover {
+        .fab-btn:hover {
             transform: scale(1.1);
+        }
+
+        #scrollTopBtn {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+
+        #scrollTopBtn.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
         }
 
         .spin {
@@ -294,9 +409,7 @@
         }
 
         .bank-info .bank-number {
-            
-            font-family: system-ui, -apple-system, sans-serif;
-            
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.6rem;
             font-weight: 600;
             letter-spacing: 2px;
@@ -345,11 +458,16 @@
             }
             .bank-info { text-align: center; }
             .btn-copy { width: 100%; }
+
+            .couple-grid { flex-direction: column; }
+            .couple-divider { display: none; }
         }
 
         @media (max-width: 768px) {
             .hero h1, .cover-title { font-size: 3.5rem; }
             .section-title { font-size: 2.2rem; }
+            .countdown-box { min-width: 65px; padding: 14px 16px; }
+            .countdown-box .num { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -358,7 +476,8 @@
     <!-- HALAMAN SAMPUL -->
     <div id="cover-screen">
         <h3 class="cover-subtitle">The Wedding Of</h3>
-        <h1 class="cover-title">Aris & Tika</h1>
+        <h1 class="cover-title">Aris & Atika Sari</h1>
+        <p class="cover-guest">Kepada Yth. Bapak/Ibu/Saudara/i<span id="guestName">Tamu Undangan</span></p>
         <button class="btn-buka" onclick="bukaUndangan()">✉️ Buka Undangan</button>
     </div>
 
@@ -367,16 +486,64 @@
        <source src="to-the-bone.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="music-control" id="musicBtn" onclick="toggleMusic()">
-        <span id="musicIcon">🎵</span>
-    </button>
+    <div class="floating-controls">
+        <button class="fab-btn" id="musicBtn" onclick="toggleMusic()" title="Putar/Jeda Musik">
+            <span id="musicIcon">🎵</span>
+        </button>
+        <button class="fab-btn" id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke Atas">⬆️</button>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h3 class="fade-in">The Wedding Of</h3>
         <h1 class="fade-in" style="transition-delay: 0.2s;">Aris & Tika</h1>
         <p class="fade-in" style="transition-delay: 0.4s;">Merayakan awal dari cerita selamanya.</p>
-        <a href="#event" class="scroll-down fade-in" style="transition-delay: 0.6s;">SCROLL KE BAWAH</a>
+        <a href="#couple" class="scroll-down fade-in" style="transition-delay: 0.6s;">SCROLL KE BAWAH</a>
+    </section>
+
+    <!-- Mempelai & Orang Tua -->
+    <section class="section" id="couple">
+        <h2 class="section-title fade-in">Mempelai</h2>
+        <div class="card fade-in">
+            <div class="couple-grid">
+                <div class="couple-box">
+                    <h3>Aris</h3>
+                    <p>Putra dari:<br>
+                    Bpk.Masum<br>
+                    &amp; Ibu Namah</p>
+                </div>
+                <div class="couple-divider">&amp;</div>
+                <div class="couple-box">
+                    <h3>Atika Sari</h3>
+                    <p>Putri dari:<br>
+                   Alm.Bpk.Royani<br>
+                    &amp; Ibu Asiah</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="section" id="countdown-section" style="padding-top: 0;">
+        <h2 class="section-title fade-in">Menuju Hari Bahagia</h2>
+        <div class="countdown-wrap fade-in">
+            <div class="countdown-box">
+                <span class="num" id="cd-days">00</span>
+                <span class="label">Hari</span>
+            </div>
+            <div class="countdown-box">
+                <span class="num" id="cd-hours">00</span>
+                <span class="label">Jam</span>
+            </div>
+            <div class="countdown-box">
+                <span class="num" id="cd-minutes">00</span>
+                <span class="label">Menit</span>
+            </div>
+            <div class="countdown-box">
+                <span class="num" id="cd-seconds">00</span>
+                <span class="label">Detik</span>
+            </div>
+        </div>
     </section>
 
     <!-- Event Details -->
@@ -393,12 +560,24 @@
             
             <!-- Google Maps Embed Langsung di Web -->
             <div class="map-container">
-                <iframe src="https://www.google.com/maps?q=-6.4687,106.7467&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=-6.4687,106.7467&z=17&output=embed" title="Lokasi Acara Pernikahan Aris & Tika" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             <!-- Tombol Buka di Aplikasi Google Maps -->
-            <a href="https://maps.app.goo.gl/dFZ1rEprak4jiZtQA" target="_blank" class="btn">
+            <a href="https://maps.app.goo.gl/dFZ1rEprak4jiZtQA" target="_blank" rel="noopener" class="btn">
                 📍 Buka di Google Maps
+            </a>
+        </div>
+    </section>
+
+    <!-- RSVP / Konfirmasi Kehadiran -->
+    <section class="section" id="rsvp">
+        <h2 class="section-title fade-in">Konfirmasi Kehadiran</h2>
+        <div class="card fade-in">
+            <h3>RSVP</h3>
+            <p>Mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i melalui WhatsApp agar kami dapat mempersiapkan acara dengan lebih baik.</p>
+            <a id="rsvpBtn" href="#" target="_blank" rel="noopener" class="btn btn-wa">
+                💬 Konfirmasi via WhatsApp
             </a>
         </div>
     </section>
@@ -414,7 +593,9 @@
                 <div class="bank-info">
                     <div class="bank-name">Bank BCA</div>
                     <div class="bank-number" id="rekNumber">2180655347</div>
-                    <div class="bank-holder">a.n. Aris</div>
+                    <div class="bank-holder">a.n. Aris
+                    
+                    </div>
                 </div>
                 <button class="btn-copy" id="btnCopyRek" onclick="salinRekening()">Salin</button>
             </div>
@@ -427,15 +608,23 @@
     <section class="section" style="padding-top: 50px; padding-bottom: 100px;">
         <h1 class="fade-in" style="font-size: 3.5rem; color: var(--primary-gold);">Terima Kasih</h1>
         <p class="fade-in" style="margin-top: 20px; font-style: italic;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
-        <p class="fade-in" style="margin-top: 30px; font-weight: 600;">Aris & Tika</p>
+        <p class="fade-in" style="margin-top: 30px; font-weight: 600;">Aris & Atika Sari</p>
     </section>
 
     <script>
-        // Logika Audio & Buka Undangan
+        /* ================= Nama Tamu via URL Param (?to=Nama) ================= */
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const to = params.get('to');
+            if (to) {
+                document.getElementById('guestName').textContent = decodeURIComponent(to.replace(/\+/g, ' '));
+            }
+        })();
+
+        /* ================= Logika Audio & Buka Undangan ================= */
         let isPlaying = false;
         const music = document.getElementById("bgMusic");
-        const btn = document.getElementById("musicBtn");
-        const icon = document.getElementById("musicIcon");
+        const musicIcon = document.getElementById("musicIcon");
 
         function bukaUndangan() {
             const cover = document.getElementById('cover-screen');
@@ -449,52 +638,135 @@
 
             music.play().then(() => {
                 isPlaying = true;
-                icon.innerHTML = "⏸️";
-                icon.classList.add("spin");
+                musicIcon.innerHTML = "⏸️";
+                musicIcon.classList.add("spin");
             }).catch(err => console.log("Audio autoplay dicegah browser", err));
         }
 
         function toggleMusic() {
             if (isPlaying) {
                 music.pause();
-                icon.innerHTML = "🎵";
-                icon.classList.remove("spin");
+                musicIcon.innerHTML = "🎵";
+                musicIcon.classList.remove("spin");
             } else {
-                music.play();
-                icon.innerHTML = "⏸️";
-                icon.classList.add("spin");
+                // Bug fix: kalau file audio gagal dimuat/diputar, jangan biarkan status jadi ngaco
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.innerHTML = "⏸️";
+                    musicIcon.classList.add("spin");
+                }).catch(err => console.log("Gagal memutar audio", err));
+                return;
             }
             isPlaying = !isPlaying;
         }
 
+        /* ================= Salin Nomor Rekening ================= */
         function salinRekening() {
             const nomor = document.getElementById("rekNumber").innerText.replace(/\s/g, "");
             const btnRek = document.getElementById("btnCopyRek");
 
-            navigator.clipboard.writeText(nomor).then(() => {
+            function markCopied() {
                 btnRek.innerText = "Tersalin ✓";
                 btnRek.classList.add("copied");
                 setTimeout(() => {
                     btnRek.innerText = "Salin";
                     btnRek.classList.remove("copied");
                 }, 2000);
-            }).catch(() => {
-                // Fallback untuk browser lama
-                const temp = document.createElement("textarea");
-                temp.value = nomor;
-                document.body.appendChild(temp);
-                temp.select();
-                document.execCommand("copy");
-                document.body.removeChild(temp);
-                btnRek.innerText = "Tersalin ✓";
-                btnRek.classList.add("copied");
-                setTimeout(() => {
-                    btnRek.innerText = "Salin";
-                    btnRek.classList.remove("copied");
-                }, 2000);
-            });
+            }
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(nomor).then(markCopied).catch(() => fallbackCopy(nomor, markCopied));
+            } else {
+                fallbackCopy(nomor, markCopied);
+            }
         }
 
+        function fallbackCopy(text, onDone) {
+            const temp = document.createElement("textarea");
+            temp.value = text;
+            temp.style.position = "fixed";
+            temp.style.opacity = "0";
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand("copy");
+            } catch (e) {
+                console.log("Copy fallback gagal", e);
+            }
+            document.body.removeChild(temp);
+            onDone();
+        }
+
+        /* ================= RSVP WhatsApp Link ================= */
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const to = params.get('to');
+            const namaTamu = to ? decodeURIComponent(to.replace(/\+/g, ' ')) : '';
+            const nomorWa = "6285714844368"; // +62 857-1484-4368
+            const pesan = namaTamu
+                ? `Assalamu'alaikum, saya ingin mengkonfirmasi kehadiran saya di acara pernikahan Aris & Atika Sari.`
+                : `Assalamu'alaikum, saya ingin mengkonfirmasi kehadiran saya di acara pernikahan Aris & Atika Sari.`;
+            const waLink = `https://wa.me/${nomorWa}?text=${encodeURIComponent(pesan)}`;
+            document.getElementById('rsvpBtn').setAttribute('href', waLink);
+        })();
+
+        /* ================= Countdown Timer ================= */
+        (function () {
+            // Sesuaikan dengan tanggal & jam acara: 23 Agustus 2026, 09:00 WIB (UTC+7)
+            const targetDate = new Date("2026-08-23T09:00:00+07:00").getTime();
+
+            const elDays = document.getElementById('cd-days');
+            const elHours = document.getElementById('cd-hours');
+            const elMinutes = document.getElementById('cd-minutes');
+            const elSeconds = document.getElementById('cd-seconds');
+
+            function pad(n) {
+                return String(n).padStart(2, '0');
+            }
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance <= 0) {
+                    elDays.textContent = "00";
+                    elHours.textContent = "00";
+                    elMinutes.textContent = "00";
+                    elSeconds.textContent = "00";
+                    clearInterval(timerInterval);
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                elDays.textContent = pad(days);
+                elHours.textContent = pad(hours);
+                elMinutes.textContent = pad(minutes);
+                elSeconds.textContent = pad(seconds);
+            }
+
+            updateCountdown();
+            const timerInterval = setInterval(updateCountdown, 1000);
+        })();
+
+        /* ================= Scroll to Top Button ================= */
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ================= Fade In Observer ================= */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
