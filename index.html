@@ -268,6 +268,83 @@
             transform: translateY(0);
         }
 
+        /* Wedding Gift / Rekening */
+        .bank-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: #fff;
+            border: 1px solid rgba(197, 168, 128, 0.4);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-top: 20px;
+        }
+
+        .bank-info {
+            text-align: left;
+        }
+
+        .bank-info .bank-name {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-gold);
+            font-weight: 500;
+        }
+
+        .bank-info .bank-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin: 4px 0;
+        }
+
+        .bank-info .bank-holder {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .btn-copy {
+            flex-shrink: 0;
+            padding: 10px 18px;
+            background-color: var(--primary-gold);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-copy:hover {
+            background-color: var(--dark-gold);
+        }
+
+        .btn-copy.copied {
+            background-color: #6b9e78;
+        }
+
+        .gift-note {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+            margin-top: 18px;
+        }
+
+        @media (max-width: 480px) {
+            .bank-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            .bank-info { text-align: center; }
+            .btn-copy { width: 100%; }
+        }
+
         @media (max-width: 768px) {
             .hero h1, .cover-title { font-size: 3.5rem; }
             .section-title { font-size: 2.2rem; }
@@ -324,6 +401,26 @@
         </div>
     </section>
 
+    <!-- Wedding Gift -->
+    <section class="section" id="gift">
+        <h2 class="section-title fade-in">Wedding Gift</h2>
+        <div class="card fade-in">
+            <h3>Tanda Kasih</h3>
+            <p>Doa restu Bapak/Ibu/Saudara/i adalah karunia yang sangat berarti bagi kami. Namun jika ingin memberikan tanda kasih, dapat melalui:</p>
+
+            <div class="bank-box">
+                <div class="bank-info">
+                    <div class="bank-name">Bank BCA</div>
+                    <div class="bank-number" id="rekNumber">2180655347</div>
+                    <div class="bank-holder">a.n. Aris</div>
+                </div>
+                <button class="btn-copy" id="btnCopyRek" onclick="salinRekening()">Salin</button>
+            </div>
+
+            <p class="gift-note">Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan memberikan tanda kasih kepada kami.</p>
+        </div>
+    </section>
+
     <!-- Closing -->
     <section class="section" style="padding-top: 50px; padding-bottom: 100px;">
         <h1 class="fade-in" style="font-size: 3.5rem; color: var(--primary-gold);">Terima Kasih</h1>
@@ -366,6 +463,34 @@
                 icon.classList.add("spin");
             }
             isPlaying = !isPlaying;
+        }
+
+        function salinRekening() {
+            const nomor = document.getElementById("rekNumber").innerText.replace(/\s/g, "");
+            const btnRek = document.getElementById("btnCopyRek");
+
+            navigator.clipboard.writeText(nomor).then(() => {
+                btnRek.innerText = "Tersalin ✓";
+                btnRek.classList.add("copied");
+                setTimeout(() => {
+                    btnRek.innerText = "Salin";
+                    btnRek.classList.remove("copied");
+                }, 2000);
+            }).catch(() => {
+                // Fallback untuk browser lama
+                const temp = document.createElement("textarea");
+                temp.value = nomor;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand("copy");
+                document.body.removeChild(temp);
+                btnRek.innerText = "Tersalin ✓";
+                btnRek.classList.add("copied");
+                setTimeout(() => {
+                    btnRek.innerText = "Salin";
+                    btnRek.classList.remove("copied");
+                }, 2000);
+            });
         }
 
         const observer = new IntersectionObserver((entries) => {
