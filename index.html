@@ -442,13 +442,28 @@
         .btn-icon {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
+            white-space: nowrap;
         }
 
         .btn-icon svg {
             width: 20px;
             height: 20px;
             flex-shrink: 0;
+        }
+
+        @media (max-width: 400px) {
+            .btn-icon {
+                font-size: 0.8rem;
+                padding-left: 22px;
+                padding-right: 22px;
+                gap: 8px;
+            }
+            .btn-icon svg {
+                width: 17px;
+                height: 17px;
+            }
         }
 
         .fab-btn:hover {
@@ -701,7 +716,11 @@
             
             <!-- Google Maps Embed Langsung di Web -->
             <div class="map-container">
-                <iframe src="https://www.google.com/maps?q=-6.4687,106.7467&z=17&output=embed" title="Lokasi Acara Pernikahan Aris & Atika Sari" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps?q=-6.4687,106.7467&z=17&output=embed" title="Lokasi Acara Pernikahan Aris & Atika Sari" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" onerror="this.style.display='none'; document.getElementById('mapFallback').style.display='flex';"></iframe>
+                <div id="mapFallback" style="display:none; height:100%; align-items:center; justify-content:center; flex-direction:column; gap:8px; background:#f5f2ed; color:#888; font-size:0.85rem; text-align:center; padding:20px;">
+                    <span>Peta tidak dapat dimuat.</span>
+                    <span>Silakan gunakan tombol di bawah untuk membuka lokasi.</span>
+                </div>
             </div>
 
             <!-- Tombol Buka di Aplikasi Google Maps -->
